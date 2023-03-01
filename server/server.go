@@ -5,12 +5,12 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"log"
 	"net/http"
 	"time"
 
 	"github.com/k1LoW/octoslack/config"
 	"github.com/k1LoW/octoslack/transformer"
+	"golang.org/x/exp/slog"
 	"golang.org/x/sync/errgroup"
 )
 
@@ -32,8 +32,10 @@ func NewUnstartedServer(cfg *config.Config) *Server {
 }
 
 func (s *Server) Start(ctx context.Context, port uint) error {
+	addr := fmt.Sprintf(":%d", port)
+	slog.Info("Start server", slog.String("addr", addr))
 	hs := &http.Server{
-		Addr:              fmt.Sprintf(":%d", port),
+		Addr:              addr,
 		Handler:           s,
 		ReadHeaderTimeout: 30 * time.Second,
 	}
@@ -50,7 +52,7 @@ func (s *Server) Start(ctx context.Context, port uint) error {
 
 	<-ctx.Done()
 	if err := hs.Shutdown(context.Background()); err != nil {
-		log.Printf("failed to shutdown: %v", err)
+		slog.Error("failed to shutdown", err)
 	}
 	if err := eg.Wait(); err != nil {
 		return err
@@ -64,20 +66,24 @@ func Start(ctx context.Context, cfg *config.Config, port uint) error {
 }
 
 func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	slog.Info("Request received", slog.String("method", r.Method), slog.String("url", r.URL.String()))
 	req, err := s.tr.Transform(r)
 	if err != nil {
 		if errors.Is(transformer.ErrNoneOfConditionsMet, err) {
 			w.WriteHeader(http.StatusNotFound)
+			slog.Error("Request dropped", err)
 			_, _ = w.Write([]byte(fmt.Sprintf("Request dropped, because %s", err)))
 			return
 		}
 		w.WriteHeader(http.StatusBadRequest)
+		slog.Error("Failed to transform", err)
 		_, _ = w.Write([]byte(fmt.Sprintf("%v", err)))
 		return
 	}
 	resp, err := s.hc.Do(req)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
+		slog.Error("Failed to request", err)
 		_, _ = w.Write([]byte(fmt.Sprintf("%v", err)))
 		return
 	}
@@ -86,6 +92,7 @@ func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	var buf bytes.Buffer
 	if _, err := buf.ReadFrom(resp.Body); err != nil {
 		w.WriteHeader(http.StatusBadRequest)
+		slog.Error("Failed to read response", err)
 		_, _ = w.Write([]byte(fmt.Sprintf("%v", err)))
 		return
 	}

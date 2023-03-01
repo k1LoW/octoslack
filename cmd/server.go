@@ -49,6 +49,7 @@ var serverCmd = &cobra.Command{
 		return nil
 	},
 	RunE: func(cmd *cobra.Command, args []string) error {
+		slog.Info("Load config", slog.String("path", configPath))
 		cfg, err := config.Load(configPath)
 		if err != nil {
 			return err
