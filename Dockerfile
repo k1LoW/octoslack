@@ -12,7 +12,7 @@ RUN make build
 FROM debian:bullseye-slim
 
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
-COPY --from=builder /workdir/runn ./usr/bin
+COPY --from=builder /workdir/octoslack ./usr/bin
 
 ENTRYPOINT ["/entrypoint.sh"]
 
