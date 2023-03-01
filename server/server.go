@@ -31,7 +31,7 @@ func NewUnstartedServer(cfg *config.Config) *Server {
 	}
 }
 
-func (s *Server) Start(ctx context.Context, port uint) error {
+func (s *Server) Start(ctx context.Context, port uint64) error {
 	addr := fmt.Sprintf(":%d", port)
 	slog.Info("Start server", slog.String("addr", addr))
 	hs := &http.Server{
@@ -60,7 +60,7 @@ func (s *Server) Start(ctx context.Context, port uint) error {
 	return nil
 }
 
-func Start(ctx context.Context, cfg *config.Config, port uint) error {
+func Start(ctx context.Context, cfg *config.Config, port uint64) error {
 	s := NewUnstartedServer(cfg)
 	return s.Start(ctx, port)
 }
