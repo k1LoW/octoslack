@@ -68,7 +68,7 @@ nfpms:
       - octoslack-linux
     homepage: https://github.com/k1LoW/octoslack
     maintainer: Ken'ichiro Oyama <k1lowxb@gmail.com>
-    description: octoslack is a tool for transforming requests to any webhook into Slack messages.
+    description: octoslack is a tool for transforming HTTP requests from any webhook into Slack messages.
     license: MIT
     formats:
       - deb
