@@ -64,9 +64,11 @@ And set it as the destination URL.
 
 HTTP requests are transformed into requests that Slack can read through octoslack.
 
+``` mermaid
 flowchart TB
     src[GitHub Webhooks] -- POST https://octoslack.example.com/services/XXX/YYY --- payload[JSON payload]
     subgraph "octoslack.example.com"
     payload[JSON payload] -- "Transform by octoslack" --- spayload[JSON payload for Slack]
     end
     spayload[JSON payload for Slack] -- POST https://hooks.slack.com/services/XXX/YYY --> Slack[Slack Incoming Webhook endpoint]
+```
