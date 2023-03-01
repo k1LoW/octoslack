@@ -1,5 +1,7 @@
 # Changelog
 
+## [v0.2.1](https://github.com/k1LoW/octoslack/compare/v0.2.0...v0.2.1) - 2023-03-01
+
 ## [v0.2.0](https://github.com/k1LoW/octoslack/compare/v0.1.0...v0.2.0) - 2023-03-01
 - Add `quote()` for quoting multi-line text by @k1LoW in https://github.com/k1LoW/octoslack/pull/9
 - Fix description by @k1LoW in https://github.com/k1LoW/octoslack/pull/11
