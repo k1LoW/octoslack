@@ -1,0 +1,8 @@
+POST /services/XXXXXxxxxxXXXXXX/XXXxxxxXXXXXXxxxxXXXXXX HTTP/1.1
+Host: hooks.slack.com
+Accept-Encoding: gzip
+Content-Length: 175
+Content-Type: application/json
+User-Agent: Go-http-client/1.1
+
+{"blocks":[{"text":{"text":"Discussion created by k1LoW","type":"mrkdwn"},"type":"section"},{"text":{"text":"octoslack has been released!","type":"mrkdwn"},"type":"section"}]}

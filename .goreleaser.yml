@@ -1,0 +1,78 @@
+before:
+  hooks:
+    - go mod download
+    - go mod tidy
+builds:
+  -
+    id: octoslack-darwin
+    ldflags:
+      - -s -w -X github.com/k1LoW/octoslack.version={{.Version}} -X github.com/k1LoW/octoslack.commit={{.FullCommit}} -X github.com/k1LoW/octoslack.date={{.Date}} -X github.com/k1LoW/octoslack/version.Version={{.Version}}
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+    main: ./cmd/octoslack/main.go
+  -
+    id: octoslack-windows
+    ldflags:
+      - -s -w -X github.com/k1LoW/octoslack.version={{.Version}} -X github.com/k1LoW/octoslack.commit={{.FullCommit}} -X github.com/k1LoW/octoslack.date={{.Date}} -X github.com/k1LoW/octoslack/version.Version={{.Version}}
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - windows
+    goarch:
+      - amd64
+    main: ./cmd/octoslack/main.go
+  -
+    id: octoslack-linux
+    ldflags:
+      - -s -w -X github.com/k1LoW/octoslack.version={{.Version}} -X github.com/k1LoW/octoslack.commit={{.FullCommit}} -X github.com/k1LoW/octoslack.date={{.Date}} -X github.com/k1LoW/octoslack/version.Version={{.Version}}
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+    goarch:
+      - amd64
+    main: ./cmd/octoslack/main.go
+archives:
+  -
+    id: octoslack-archive
+    name_template: '{{ .ProjectName }}_v{{ .Version }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
+    format_overrides:
+      - goos: darwin
+        format: zip
+    files:
+      - CREDITS
+      - README.md
+      - CHANGELOG.md
+    rlcp: true
+checksum:
+  name_template: 'checksums.txt'
+snapshot:
+  name_template: "{{ .Version }}-next"
+changelog:
+  skip: true
+  sort: asc
+  filters:
+    exclude:
+    - '^docs:'
+    - '^test:'
+nfpms:
+  -
+    id: octoslack-nfpms
+    file_name_template: "{{ .ProjectName }}_{{ .Version }}-1_{{ .Arch }}"
+    builds:
+      - octoslack-linux
+    homepage: https://github.com/k1LoW/octoslack
+    maintainer: Ken'ichiro Oyama <k1lowxb@gmail.com>
+    description: octoslack is a tool for transforming requests to any webhook into Slack messages.
+    license: MIT
+    formats:
+      - deb
+      - rpm
+      - apk
+    bindir: /usr/bin
+    epoch: 1
