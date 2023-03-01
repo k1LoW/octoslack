@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.2.0](https://github.com/k1LoW/octoslack/compare/v0.1.0...v0.2.0) - 2023-03-01
+- Add `quote()` for quoting multi-line text by @k1LoW in https://github.com/k1LoW/octoslack/pull/9
+- Fix description by @k1LoW in https://github.com/k1LoW/octoslack/pull/11
+
 ## [v0.1.0](https://github.com/k1LoW/octoslack/compare/v0.0.2...v0.1.0) - 2023-03-01
 - Support `github://` scheme for loading config.yml by @k1LoW in https://github.com/k1LoW/octoslack/pull/3
 - Bump golang.org/x/crypto from 0.0.0-20210817164053-32db794688a5 to 0.1.0 by @dependabot in https://github.com/k1LoW/octoslack/pull/4
