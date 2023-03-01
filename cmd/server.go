@@ -51,6 +51,9 @@ var serverCmd = &cobra.Command{
 		}
 		if e := os.Getenv("OCTOSLACK_PORT"); e != "" {
 			port, err = strconv.ParseUint(e, 10, 64)
+			if err != nil {
+				return err
+			}
 		}
 		if os.Getenv("OCTOSLACK_VERBOSE") != "" || os.Getenv("DEBUG") != "" {
 			verbose = true
