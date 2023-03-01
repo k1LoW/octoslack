@@ -25,6 +25,7 @@ import (
 	"context"
 	"os"
 	"os/signal"
+	"strconv"
 	"syscall"
 
 	"github.com/k1LoW/octoslack/config"
@@ -36,7 +37,7 @@ import (
 
 var (
 	configPath string
-	port       uint
+	port       uint64
 	verbose    bool
 )
 
@@ -44,7 +45,16 @@ var serverCmd = &cobra.Command{
 	Use:   "server",
 	Short: "start server",
 	Long:  `start server.`,
-	PreRunE: func(cmd *cobra.Command, args []string) error {
+	PreRunE: func(cmd *cobra.Command, args []string) (err error) {
+		if e := os.Getenv("OCTOSLACK_CONFIG"); e != "" {
+			configPath = e
+		}
+		if e := os.Getenv("OCTOSLACK_PORT"); e != "" {
+			port, err = strconv.ParseUint(e, 10, 64)
+		}
+		if os.Getenv("OCTOSLACK_VERBOSE") != "" || os.Getenv("DEBUG") != "" {
+			verbose = true
+		}
 		setLogger(verbose)
 		return nil
 	},
@@ -70,7 +80,7 @@ func init() {
 	rootCmd.AddCommand(serverCmd)
 	serverCmd.Flags().StringVarP(&configPath, "config", "c", "config.yml", "config path")
 	serverCmd.Flags().BoolVarP(&verbose, "verbose", "", false, "show verbose log")
-	serverCmd.Flags().UintVarP(&port, "port", "p", 8080, "listen port")
+	serverCmd.Flags().Uint64VarP(&port, "port", "p", 8080, "listen port")
 }
 
 func setLogger(verbose bool) {
