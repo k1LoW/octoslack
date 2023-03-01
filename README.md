@@ -15,7 +15,7 @@ flowchart TB
 
 ### 0. Requirements
 
-- Slack Incoming Webhook URL ( `https://hooks.slack..com/services/XXXXXxxxxxXXXXXX/XXXxxxxXXXXXXxxxxXXXXXX` )
+- Slack Incoming Webhook URL ( `https://hooks.slack..com/services/XXX/YYY` )
 
 ### 1. Setup config.yml
 
