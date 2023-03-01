@@ -2,4 +2,4 @@ package version
 
 const Name string = "octoslack"
 
-var Version = "0.0.2"
+var Version = "0.1.0"
