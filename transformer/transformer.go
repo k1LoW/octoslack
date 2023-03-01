@@ -3,7 +3,9 @@ package transformer
 import (
 	"bytes"
 	"errors"
+	"fmt"
 	"net/http"
+	"strings"
 
 	"github.com/antonmedv/expr"
 	"github.com/goccy/go-json"
@@ -45,6 +47,7 @@ func (t *Transformer) Transform(req *http.Request) (*http.Request, error) {
 		"method":       req.Method,
 		"headers":      req.Header,
 		"payload":      payload,
+		"quote":        quote,
 	}
 	for _, e := range t.config.Requests {
 		tf, err := evalCond(e.Condition, env)
@@ -107,4 +110,17 @@ func evalExpand(tmpl, env map[string]interface{}) (map[string]interface{}, error
 		return nil, err
 	}
 	return out, nil
+}
+
+func quote(v interface{}) string {
+	lines := strings.Split(v.(string), "\n")
+	quoted := []string{}
+	for _, l := range lines {
+		ql := fmt.Sprintf("> %s", l)
+		if ql == "> " {
+			ql = ">"
+		}
+		quoted = append(quoted, ql)
+	}
+	return strings.Join(quoted, "\n")
 }

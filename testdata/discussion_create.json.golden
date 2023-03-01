@@ -2,4 +2,4 @@ POST /services/XXXXXxxxxxXXXXXX/XXXxxxxXXXXXXxxxxXXXXXX HTTP/1.1
 Host: hooks.slack.com
 Content-Type: application/json
 
-{"blocks":[{"text":{"text":"Discussion created by k1LoW","type":"mrkdwn"},"type":"section"},{"text":{"text":"octoslack has been released!","type":"mrkdwn"},"type":"section"}]}
+{"blocks":[{"text":{"text":"Discussion created by k1LoW","type":"mrkdwn"},"type":"section"},{"text":{"text":"octoslack has been released!","type":"mrkdwn"},"type":"section"},{"text":{"text":"\u003e # octoslack\n\u003e\n\u003e `octoslack` is a tool for transforming requests to any webhook into Slack messages.","type":"mrkdwn"},"type":"section"}]}
