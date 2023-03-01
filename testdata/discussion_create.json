@@ -49,7 +49,7 @@
     "updated_at": "2023-02-999T06:53:21Z",
     "author_association": "NONE",
     "active_lock_reason": null,
-    "body": "# octoslack\n\n`octoslack` is a tool for transforming requests to any webhook into Slack messages.",
+    "body": "# octoslack\n\n`octoslack` is a tool for transforming HTTP requests from any webhook into Slack messages.",
     "reactions": {
       "url": "https://git.example.com/api/v3/repos/example/myrepo/discussions/1042/reactions",
       "total_count": 0,
