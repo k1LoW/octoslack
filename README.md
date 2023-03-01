@@ -56,7 +56,7 @@ Here, assume it is published as `https://octoslack.example.com`.
 
 Change the hostname of the Slack Incoming webhook URL to `octoslack.example.com`.
 
-`https://hooks.slack..com/services/XXXXXxxxxxXXXXXX/XXXxxxxXXXXXXxxxxXXXXXX` -> `https://octoslack.example.com/services/XXXXXxxxxxXXXXXX/XXXxxxxXXXXXXxxxxXXXXXX`
+`https://hooks.slack..com/services/XXX/YYY` -> `https://octoslack.example.com/services/XXX/YYY`
 
 And set it as the destination URL.
 
