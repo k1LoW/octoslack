@@ -52,7 +52,7 @@ $ octoslack server -c config.yml
 
 If you want to use a Docker image and start the server using the config file in the GitHub repository, you can run the following.
 
-``` console
+``` sh
 $ docker container run -it --rm --name octoslack-server \
   -e OCTOSLACK_CONFIG=github://k1LoW/octoslack/config.example.yml \
   -e GITHUB_TOKEN \ # use GITHUB_TOKEN
