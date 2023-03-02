@@ -38,6 +38,10 @@ func (t *Transformer) Transform(req *http.Request) (*http.Request, error) {
 	if err := req.Body.Close(); err != nil {
 		return nil, err
 	}
+	if len(buf.Bytes()) == 0 {
+		return nil, errors.New("empty payload")
+	}
+
 	payload := map[string]interface{}{}
 	if err := json.Unmarshal(buf.Bytes(), &payload); err != nil {
 		return nil, err
