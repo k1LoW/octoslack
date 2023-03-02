@@ -63,9 +63,9 @@ $ docker container run -it --rm --name octoslack-server \
 
 Here, assume it is published as `https://octoslack.example.com`.
 
-### 3. Set Slack Incoming webhook URL by changing the hostname to `octoslack.example.com`
+### 3. Set Slack Incoming webhook URL by changing the host to `octoslack.example.com`
 
-Change the hostname of the Slack Incoming webhook URL to `octoslack.example.com`.
+Change the host of the Slack Incoming webhook URL to `octoslack.example.com`.
 
 `https://hooks.slack..com/services/XXX/YYY` -> `https://octoslack.example.com/services/XXX/YYY`
 
