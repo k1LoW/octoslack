@@ -1,5 +1,7 @@
 # octoslack
 
+[![build](https://github.com/k1LoW/octoslack/actions/workflows/ci.yml/badge.svg)](https://github.com/k1LoW/octoslack/actions/workflows/ci.yml) ![Coverage](https://raw.githubusercontent.com/k1LoW/octocovs/main/badges/k1LoW/octoslack/coverage.svg) ![Code to Test Ratio](https://raw.githubusercontent.com/k1LoW/octocovs/main/badges/k1LoW/octoslack/ratio.svg)
+
 `octoslack` is a tool for transforming HTTP requests from any webhook into Slack messages.
 
 ## Usage
