@@ -28,6 +28,13 @@ func TestTransform(t *testing.T) {
 			"../testdata/discussion_create.json",
 			false,
 		},
+		{
+			"../testdata/config.yml",
+			"https://octoslack.example.com/services/XXXXXxxxxxXXXXXX/XXXxxxxXXXXXXxxxxXXXXXX",
+			"discussion",
+			"../testdata/empty.json",
+			true,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.payload, func(t *testing.T) {
