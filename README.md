@@ -50,6 +50,16 @@ Start the octoslack server and make the server accessible from the Internet.
 $ octoslack server -c config.yml
 ```
 
+If you want to use a Docker image and start the server using the config file in the GitHub repository, you can run the following.
+
+``` console
+$ docker container run -it --rm --name octoslack-server \
+  -e OCTOSLACK_CONFIG=github://k1LoW/octoslack/config.example.yml \
+  -e GITHUB_TOKEN \ # use GITHUB_TOKEN
+  -p 8080:8080 \
+  ghcr.io/k1low/octoslack:latest
+```
+
 Here, assume it is published as `https://octoslack.example.com`.
 
 ### 3. Set Slack Incoming webhook URL by changing the hostname to `octoslack.example.com`
