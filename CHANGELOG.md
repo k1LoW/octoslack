@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.2.3](https://github.com/k1LoW/octoslack/compare/v0.2.2...v0.2.3) - 2023-03-03
+- Update k1LoW/expand to v0.6.0 by @k1LoW in https://github.com/k1LoW/octoslack/pull/16
+
 ## [v0.2.2](https://github.com/k1LoW/octoslack/compare/v0.2.1...v0.2.2) - 2023-03-02
 - Fix response body error handling by @k1LoW in https://github.com/k1LoW/octoslack/pull/14
 
