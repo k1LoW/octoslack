@@ -1,8 +1,8 @@
 POST /services/XXXXXxxxxxXXXXXX/XXXxxxxXXXXXXxxxxXXXXXX HTTP/1.1
 Host: hooks.slack.com
 Accept-Encoding: gzip
-Content-Length: 354
+Content-Length: 469
 Content-Type: application/json
 User-Agent: Go-http-client/1.1
 
-{"blocks":[{"text":{"text":"Discussion created by k1LoW","type":"mrkdwn"},"type":"section"},{"text":{"text":"octoslack has been released!","type":"mrkdwn"},"type":"section"},{"text":{"text":"\u003e # octoslack\n\u003e\n\u003e `octoslack` is a tool for transforming HTTP requests from any webhook into Slack messages.","type":"mrkdwn"},"type":"section"}]}
+{"blocks":[{"text":{"text":"Discussion created by k1LoW","type":"mrkdwn"},"type":"section"},{"text":{"text":"octoslack has been released!","type":"mrkdwn"},"type":"section"},{"text":{"text":"テストタイトル\\r\nテストタイトル","type":"mrkdwn"},"type":"section"},{"text":{"text":"\u003e テストタイトル\\r\n\u003e テストタイトル","type":"mrkdwn"},"type":"section"},{"text":{"text":"\u003e テスト固定\n","type":"mrkdwn"},"type":"section"}]}
