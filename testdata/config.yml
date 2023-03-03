@@ -7,15 +7,12 @@ requests:
         - type: section
           text:
             type: mrkdwn
-            text: |-
-              Discussion created by {{ payload.sender.login }}
+            text: 'Discussion created by {{ payload.sender.login }}'
         - type: section
           text:
             type: mrkdwn
-            text: |-
-              {{ payload.discussion.title }}
+            text: '{{ payload.discussion.title }}'
         - type: section
           text:
             type: mrkdwn
-            text: |-
-              {{ quote(payload.discussion.body) }}
+            text: '{{ quote(payload.discussion.body) }}'

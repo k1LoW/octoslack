@@ -7,7 +7,7 @@ require (
 	github.com/goccy/go-json v0.10.0
 	github.com/goccy/go-yaml v1.9.8
 	github.com/google/go-github/v50 v50.0.0
-	github.com/k1LoW/expand v0.5.6
+	github.com/k1LoW/expand v0.6.0
 	github.com/k1LoW/go-github-client/v50 v50.0.6
 	github.com/k1LoW/httpstub v0.6.0
 	github.com/spf13/cobra v1.6.1
