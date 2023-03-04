@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.3.1](https://github.com/k1LoW/octoslack/compare/v0.3.0...v0.3.1) - 2023-03-04
+- Trim `\r` by @k1LoW in https://github.com/k1LoW/octoslack/pull/19
+
 ## [v0.3.0](https://github.com/k1LoW/octoslack/compare/v0.2.3...v0.3.0) - 2023-03-04
 - Update k1LoW/expand to v0.7.0 by @k1LoW in https://github.com/k1LoW/octoslack/pull/17
 
