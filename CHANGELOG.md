@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.3.0](https://github.com/k1LoW/octoslack/compare/v0.2.3...v0.3.0) - 2023-03-04
+- Update k1LoW/expand to v0.7.0 by @k1LoW in https://github.com/k1LoW/octoslack/pull/17
+
 ## [v0.2.3](https://github.com/k1LoW/octoslack/compare/v0.2.2...v0.2.3) - 2023-03-03
 - Update k1LoW/expand to v0.6.0 by @k1LoW in https://github.com/k1LoW/octoslack/pull/16
 
