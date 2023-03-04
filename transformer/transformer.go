@@ -14,7 +14,10 @@ import (
 	"github.com/k1LoW/octoslack/config"
 )
 
-var ErrNoneOfConditionsMet = errors.New("none of conditions met")
+var (
+	ErrNoneOfConditionsMet = errors.New("none of conditions met")
+	nlRep                  = strings.NewReplacer("\r\n", "\n")
+)
 
 type Transformer struct {
 	config *config.Config
@@ -105,7 +108,14 @@ func evalExpand(tmpl, env map[string]interface{}) (map[string]interface{}, error
 	if err != nil {
 		return nil, err
 	}
-	e, err := expand.ReplaceYAML(string(b), expand.ExprRepFn(delimStart, delimEnd, env), true)
+	e, err := expand.ReplaceYAML(string(b), func(in string) (string, error) {
+		repfn := expand.ExprRepFn(delimStart, delimEnd, env)
+		out, err := repfn(in)
+		if err != nil {
+			return "", err
+		}
+		return nlRep.Replace(out), nil
+	}, true)
 	if err != nil {
 		return nil, err
 	}
