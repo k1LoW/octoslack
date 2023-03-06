@@ -11,7 +11,7 @@ func TestLoad(t *testing.T) {
 		{"../testdata/config.yml", 1, false},
 		{"../testdata/config.empty.yml", 0, false},
 		{"../testdata/notexist.yml", 0, true},
-		{"github://k1LoW/octoslack/config.example.yml", 3, false},
+		{"github://k1LoW/octoslack/config.example.yml", 4, false},
 		{"github://k1LoW/octoslack/notexist.yml", 0, true},
 	}
 	for _, tt := range tests {
