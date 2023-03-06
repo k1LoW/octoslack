@@ -7,10 +7,47 @@ requests:
         - type: section
           text:
             type: mrkdwn
-            text: |-
-              Discussion created by {{ payload.user.login }}
+            text: '{{ payload.discussion.category.emoji }} Discussion created by <{{ payload.sender.html_url }}|{{ payload.sender.login }}>'
         - type: section
           text:
             type: mrkdwn
-            text: |-
-              {{ quote(payload.discussion.body) }}
+            text: "{{ quote_md('*<' + payload.discussion.html_url + '|#' + string(payload.discussion.number) + ' ' + payload.discussion.title + '>*' + '\n' + payload.discussion.body) }}"
+        - type: context
+          elements:
+            -
+              type: mrkdwn
+              text: 'Created by <{{ payload.sender.html_url }}|{{ payload.sender.login }}> on <{{ payload.discussion.html_url }} | {{ payload.repository.full_name }}>'
+  -
+    condition: github_event == 'discussion_comment' && payload.action == 'created'
+    transform:
+      blocks:
+        - type: section
+          text:
+            type: mrkdwn
+            text: 'New comment by <{{ payload.sender.html_url }}|{{ payload.sender.login }}> on discussion <{{ payload.comment.html_url }}|#{{ string(payload.discussion.number) }} {{ payload.discussion.title }} >'
+        - type: section
+          text:
+            type: mrkdwn
+            text: "{{ quote_md(payload.comment.body) }}"
+        - type: context
+          elements:
+            -
+              type: mrkdwn
+              text: 'Commented by <{{ payload.sender.html_url }}|{{ payload.sender.login }}> on <{{ payload.comment.html_url }} | {{ payload.repository.full_name }}>'
+  -
+    condition: github_event == 'discussion' && payload.action == 'answered'
+    transform:
+      blocks:
+        - type: section
+          text:
+            type: mrkdwn
+            text: ':tada: Marked as answer by <{{ payload.sender.html_url }}|{{ payload.sender.login }}> on discussion <{{ payload.answer.html_url }}|#{{ string(payload.discussion.number) }} {{ payload.discussion.title }} >'
+        - type: section
+          text:
+            type: mrkdwn
+            text: '{{ payload.answer.html_url }} by <{{ payload.answer.user.html_url }}|{{ payload.answer.user.login }}>'
+        - type: context
+          elements:
+            -
+              type: mrkdwn
+              text: 'Marked by <{{ payload.sender.html_url }}|{{ payload.sender.login }}> on <{{ payload.answer.html_url }} | {{ payload.repository.full_name }}>'

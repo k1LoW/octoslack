@@ -15,4 +15,4 @@ requests:
         - type: section
           text:
             type: mrkdwn
-            text: '{{ quote(payload.discussion.body) }}'
+            text: '{{ quote_md(payload.discussion.body) }}'
