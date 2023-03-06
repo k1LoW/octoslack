@@ -28,7 +28,7 @@ requests:
         - type: section
           text:
             type: mrkdwn
-            text: "{{ quote_md(shorten_lines_md(payload.comment.body, 10, '<' + payload.comment.html_url + '|View more>') }}"
+            text: "{{ quote_md(shorten_lines_md(payload.comment.body, 10, '<' + payload.comment.html_url + '|View more>')) }}"
         - type: context
           elements:
             -
