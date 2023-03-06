@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.5.0](https://github.com/k1LoW/octoslack/compare/v0.4.0...v0.5.0) - 2023-03-06
+- Add `quote_md()` for supporting quoted codeblock by @k1LoW in https://github.com/k1LoW/octoslack/pull/24
+- Add `shorten_lines` for shortening lines by @k1LoW in https://github.com/k1LoW/octoslack/pull/26
+
 ## [v0.4.0](https://github.com/k1LoW/octoslack/compare/v0.3.1...v0.4.0) - 2023-03-06
 - Add `cat` command for transform payload by @k1LoW in https://github.com/k1LoW/octoslack/pull/21
 - Add `string()` for casting to string by @k1LoW in https://github.com/k1LoW/octoslack/pull/22
