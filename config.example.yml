@@ -11,7 +11,7 @@ requests:
         - type: section
           text:
             type: mrkdwn
-            text: "{{ quote_md('*<' + payload.discussion.html_url + '|#' + string(payload.discussion.number) + ' ' + payload.discussion.title + '>*' + '\n' + payload.discussion.body) }}"
+            text: "{{ quote_md(shorten_lines_md('*<' + payload.discussion.html_url + '|#' + string(payload.discussion.number) + ' ' + payload.discussion.title + '>*' + '\n' + payload.discussion.body, 10, '<' + payload.discussion.html_url + '|View more>')) }}"
         - type: context
           elements:
             -
@@ -28,7 +28,7 @@ requests:
         - type: section
           text:
             type: mrkdwn
-            text: "{{ quote_md(payload.comment.body) }}"
+            text: "{{ quote_md(shorten_lines_md(payload.comment.body, 10, '<' + payload.comment.html_url + '|View more>') }}"
         - type: context
           elements:
             -
@@ -51,3 +51,11 @@ requests:
             -
               type: mrkdwn
               text: 'Marked by <{{ payload.sender.html_url }}|{{ payload.sender.login }}> on <{{ payload.answer.html_url }} | {{ payload.repository.full_name }}>'
+  -
+    condition: github_event == 'ping'
+    transform:
+      blocks:
+        - type: section
+          text:
+            type: mrkdwn
+            text: 'Set octoslack to <{{ payload.repository.html_url }}|{{ payload.repository.full_name }} >'

@@ -55,10 +55,11 @@ func (t *Transformer) Transform(req *http.Request) (*http.Request, error) {
 		"headers":      req.Header,
 		"payload":      payload,
 		// built-in funcs
-		"quote":         quote,
-		"quote_md":      quoteMarkdown,
-		"shorten_lines": shortenLines,
-		"string":        cast.ToString,
+		"quote":            quote,
+		"quote_md":         quoteMarkdown,
+		"shorten_lines":    shortenLines,
+		"shorten_lines_md": shortenLinesMarkdown,
+		"string":           cast.ToString,
 	}
 	for _, e := range t.config.Requests {
 		tf, err := evalCond(e.Condition, env)
