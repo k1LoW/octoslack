@@ -15,4 +15,4 @@ requests:
         - type: section
           text:
             type: mrkdwn
-            text: '{{ quote_md(payload.discussion.body) }}'
+            text: "{{ quote_md(shorten_lines(payload.discussion.body, 3, '(snip)')) }}"
