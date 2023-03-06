@@ -12,6 +12,7 @@ import (
 	"github.com/goccy/go-yaml"
 	"github.com/k1LoW/expand"
 	"github.com/k1LoW/octoslack/config"
+	"github.com/spf13/cast"
 )
 
 var (
@@ -54,7 +55,9 @@ func (t *Transformer) Transform(req *http.Request) (*http.Request, error) {
 		"method":       req.Method,
 		"headers":      req.Header,
 		"payload":      payload,
-		"quote":        quote,
+		// built-in funcs
+		"quote":  quote,
+		"string": cast.ToString,
 	}
 	for _, e := range t.config.Requests {
 		tf, err := evalCond(e.Condition, env)

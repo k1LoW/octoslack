@@ -10,6 +10,8 @@ require (
 	github.com/k1LoW/expand v0.7.0
 	github.com/k1LoW/go-github-client/v50 v50.0.6
 	github.com/k1LoW/httpstub v0.6.0
+	github.com/mattn/go-isatty v0.0.16
+	github.com/spf13/cast v1.5.0
 	github.com/spf13/cobra v1.6.1
 	github.com/tenntenn/golden v0.4.0
 	golang.org/x/exp v0.0.0-20230224173230-c95f2b4c22f2
@@ -27,7 +29,6 @@ require (
 	github.com/josharian/mapfs v0.0.0-20210615234106-095c008854e6 // indirect
 	github.com/josharian/txtarfs v0.0.0-20210615234325-77aca6df5bca // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
-	github.com/mattn/go-isatty v0.0.16 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	golang.org/x/crypto v0.1.0 // indirect
 	golang.org/x/net v0.7.0 // indirect
