@@ -23,6 +23,10 @@ func TestQuote(t *testing.T) {
 			[]string{"following code", "``` sh", "go run main.go", "```", "ok"},
 			[]string{"> following code", "> ``` sh", "> go run main.go", "> ```", "> ok"},
 		},
+		{
+			[]string{"a"},
+			[]string{"> a", ""},
+		},
 	}
 	for i, tt := range tests {
 		t.Run(fmt.Sprintf("%d", i), func(t *testing.T) {
@@ -50,6 +54,10 @@ func TestQuoteMarkdown(t *testing.T) {
 		{
 			[]string{"following code", "``` sh", "go run main.go", "```", "ok"},
 			[]string{"> following code", "> ``` sh", "go run main.go", "```", "> ok"},
+		},
+		{
+			[]string{"a"},
+			[]string{"> a", ""},
 		},
 	}
 	for i, tt := range tests {
