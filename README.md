@@ -35,13 +35,11 @@ requests:
         - type: section
           text:
             type: mrkdwn
-            text: |-
-              Discussion created by {{ payload.user.login }}
+            text: 'Discussion created by {{ payload.user.login }}'
         - type: section
           text:
             type: mrkdwn
-            text: |-
-              {{ quote(payload.discussion.body) }}
+            text: '{{ quote_md(payload.discussion.body) }}'
 ```
 
 ### 2. Start octoslack server
