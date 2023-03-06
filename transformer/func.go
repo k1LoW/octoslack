@@ -15,6 +15,10 @@ func quote(v interface{}) string {
 		}
 		quoted = append(quoted, ql)
 	}
+	if len(quoted) == 1 {
+		// When converting back to YAML, `>` means something else if it's one line.
+		return strings.Join(quoted, "\n") + "\n"
+	}
 	return strings.Join(quoted, "\n")
 }
 
@@ -40,6 +44,10 @@ func quoteMarkdown(v interface{}) string {
 			ql = ">"
 		}
 		quoted = append(quoted, ql)
+	}
+	if len(quoted) == 1 {
+		// When converting back to YAML, `>` means something else if it's one line.
+		return strings.Join(quoted, "\n") + "\n"
 	}
 	return strings.Join(quoted, "\n")
 }
