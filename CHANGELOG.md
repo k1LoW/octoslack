@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.4.0](https://github.com/k1LoW/octoslack/compare/v0.3.1...v0.4.0) - 2023-03-06
+- Add `cat` command for transform payload by @k1LoW in https://github.com/k1LoW/octoslack/pull/21
+- Add `string()` for casting to string by @k1LoW in https://github.com/k1LoW/octoslack/pull/22
+
 ## [v0.3.1](https://github.com/k1LoW/octoslack/compare/v0.3.0...v0.3.1) - 2023-03-04
 - Trim `\r` by @k1LoW in https://github.com/k1LoW/octoslack/pull/19
 
