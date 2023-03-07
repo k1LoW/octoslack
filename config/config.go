@@ -67,7 +67,15 @@ func Load(p string) (*Config, error) {
 
 func (cfg *Config) validate() error {
 	if len(cfg.Requests) == 0 {
-		return errors.New("no settings")
+		return errors.New("no requests:")
+	}
+	for i, r := range cfg.Requests {
+		if r.Condition == "" {
+			return fmt.Errorf("invalid requests[%d]: empty condition:", i)
+		}
+		if len(r.Transform) == 0 {
+			return fmt.Errorf("invalid requests[%d]: empty transform:", i)
+		}
 	}
 	return nil
 }
