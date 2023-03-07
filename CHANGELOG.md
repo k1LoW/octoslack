@@ -1,5 +1,10 @@
 # Changelog
 
+## [v0.6.0](https://github.com/k1LoW/octoslack/compare/v0.5.1...v0.6.0) - 2023-03-07
+- Add `conftest` command for testing config by @k1LoW in https://github.com/k1LoW/octoslack/pull/29
+- Update pkgs by @k1LoW in https://github.com/k1LoW/octoslack/pull/31
+- Bump golang.org/x/crypto from 0.0.0-20210817164053-32db794688a5 to 0.1.0 by @dependabot in https://github.com/k1LoW/octoslack/pull/32
+
 ## [v0.5.1](https://github.com/k1LoW/octoslack/compare/v0.5.0...v0.5.1) - 2023-03-06
 - Fix: when converting back to YAML, `>` means something else if it's one line. by @k1LoW in https://github.com/k1LoW/octoslack/pull/28
 
