@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.6.2](https://github.com/k1LoW/octoslack/compare/v0.6.1...v0.6.2) - 2023-03-07
+- Fix config path resolution by @k1LoW in https://github.com/k1LoW/octoslack/pull/35
+
 ## [v0.6.1](https://github.com/k1LoW/octoslack/compare/v0.6.0...v0.6.1) - 2023-03-07
 - Fix priority of option and environment variables by @k1LoW in https://github.com/k1LoW/octoslack/pull/33
 
