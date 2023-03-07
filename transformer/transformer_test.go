@@ -20,7 +20,7 @@ func TestTransform(t *testing.T) {
 		payload string
 		wantErr bool
 	}{
-		{"../testdata/config.empty.yml", "", "", "../testdata/empty.json", true},
+		{"../testdata/config.false.yml", "", "", "../testdata/empty.json", true},
 		{
 			"../testdata/config.yml",
 			"https://octoslack.example.com/services/XXXXXxxxxxXXXXXX/XXXxxxxXXXXXXxxxxXXXXXX",
