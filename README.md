@@ -83,3 +83,28 @@ flowchart TB
     end
     spayload[JSON payload for Slack] -- POST https://hooks.slack.com/services/XXX/YYY --> Slack[Slack Incoming Webhook endpoint]
 ```
+
+## Expression evaluation engine
+
+octoslack has embedded [antonmedv/expr](https://github.com/antonmedv/expr) as the evaluation engine for the expression.
+
+It can be used in `requests.[*].condition:` and `requests.[*].transform:`.
+
+See [Language Definition](https://expr.medv.io/docs/Language-Definition).
+
+### Built-in functions
+
+- `quote` ... Quote ( Add `> ` ) multiple lines.
+- `quote_md` ... Quote multiple lines considering Slack markdown syntax.
+- `shorten_lines` ... Shorten the number of lines.
+- `shorten_lines_md` ... Shorten the number of lines considering Slack markdown syntax.
+- `string` ... [cast.ToString](https://pkg.go.dev/github.com/spf13/cast#ToString)
+
+## Available variables
+
+| Variable name | Type | Description |
+| --- | --- | --- |
+| `method` | `string` | HTTP method of request |
+| `headers` | `object` | HTTP headers of request |
+| `payload` | `object` | HTTP payload of request |
+| `github_event` | `string` | Value of `X-GitHub-Event` header |
