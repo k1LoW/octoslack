@@ -29,7 +29,7 @@ func TestHandler(t *testing.T) {
 			http.StatusOK,
 		},
 		{
-			"../testdata/config.empty.yml",
+			"../testdata/config.false.yml",
 			"discussion",
 			"../testdata/discussion_create.json",
 			http.StatusNotFound,

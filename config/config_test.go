@@ -9,7 +9,7 @@ func TestLoad(t *testing.T) {
 		wantErr bool
 	}{
 		{"../testdata/config.yml", 1, false},
-		{"../testdata/config.empty.yml", 0, false},
+		{"../testdata/config.empty.yml", 0, true},
 		{"../testdata/notexist.yml", 0, true},
 		{"github://k1LoW/octoslack/config.example.yml", 4, false},
 		{"github://k1LoW/octoslack/notexist.yml", 0, true},
