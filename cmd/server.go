@@ -35,6 +35,7 @@ import (
 	"golang.org/x/sync/errgroup"
 )
 
+const defaultConfigPath = "octoslack.yml"
 const defaultPort = 8080
 
 var (
@@ -48,7 +49,7 @@ var serverCmd = &cobra.Command{
 	Short: "start server",
 	Long:  `start server.`,
 	PreRunE: func(cmd *cobra.Command, args []string) (err error) {
-		if e := os.Getenv("OCTOSLACK_CONFIG"); e != "" && configPath == "" {
+		if e := os.Getenv("OCTOSLACK_CONFIG"); e != "" && configPath == defaultConfigPath {
 			configPath = e
 		}
 		if e := os.Getenv("OCTOSLACK_PORT"); e != "" && port == defaultPort {
@@ -83,7 +84,7 @@ var serverCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(serverCmd)
-	serverCmd.Flags().StringVarP(&configPath, "config", "c", "config.yml", "config path")
+	serverCmd.Flags().StringVarP(&configPath, "config", "c", defaultConfigPath, "config path")
 	serverCmd.Flags().BoolVarP(&verbose, "verbose", "", false, "show verbose log")
 	serverCmd.Flags().Uint64VarP(&port, "port", "p", defaultPort, "listen port")
 }
