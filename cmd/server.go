@@ -35,6 +35,8 @@ import (
 	"golang.org/x/sync/errgroup"
 )
 
+const defaultPort = 8080
+
 var (
 	configPath string
 	port       uint64
@@ -46,10 +48,10 @@ var serverCmd = &cobra.Command{
 	Short: "start server",
 	Long:  `start server.`,
 	PreRunE: func(cmd *cobra.Command, args []string) (err error) {
-		if e := os.Getenv("OCTOSLACK_CONFIG"); e != "" {
+		if e := os.Getenv("OCTOSLACK_CONFIG"); e != "" && configPath == "" {
 			configPath = e
 		}
-		if e := os.Getenv("OCTOSLACK_PORT"); e != "" {
+		if e := os.Getenv("OCTOSLACK_PORT"); e != "" && port == defaultPort {
 			port, err = strconv.ParseUint(e, 10, 64)
 			if err != nil {
 				return err
@@ -83,7 +85,7 @@ func init() {
 	rootCmd.AddCommand(serverCmd)
 	serverCmd.Flags().StringVarP(&configPath, "config", "c", "config.yml", "config path")
 	serverCmd.Flags().BoolVarP(&verbose, "verbose", "", false, "show verbose log")
-	serverCmd.Flags().Uint64VarP(&port, "port", "p", 8080, "listen port")
+	serverCmd.Flags().Uint64VarP(&port, "port", "p", defaultPort, "listen port")
 }
 
 func setLogger(verbose bool) {
