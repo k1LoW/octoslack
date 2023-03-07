@@ -33,7 +33,7 @@ var conftestCmd = &cobra.Command{
 	Short: "test config.yml",
 	Long:  `test config.yml.`,
 	PreRunE: func(cmd *cobra.Command, args []string) (err error) {
-		if e := os.Getenv("OCTOSLACK_CONFIG"); e != "" && configPath == "" {
+		if e := os.Getenv("OCTOSLACK_CONFIG"); e != "" && configPath == defaultConfigPath {
 			configPath = e
 		}
 		return nil
