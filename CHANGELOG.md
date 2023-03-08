@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.7.0](https://github.com/k1LoW/octoslack/compare/v0.6.2...v0.7.0) - 2023-03-08
+- Support dynamic config update by @k1LoW in https://github.com/k1LoW/octoslack/pull/38
+
 ## [v0.6.2](https://github.com/k1LoW/octoslack/compare/v0.6.1...v0.6.2) - 2023-03-07
 - Fix config path resolution by @k1LoW in https://github.com/k1LoW/octoslack/pull/35
 
