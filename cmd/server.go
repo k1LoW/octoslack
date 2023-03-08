@@ -94,10 +94,13 @@ var serverCmd = &cobra.Command{
 						case <-ticker.C:
 							cfg, err := config.Load(configPath)
 							if err != nil {
+								slog.Error("Failed to load config", err)
+								continue
+							}
+							if err := s.UpdateConfig(cfg); err != nil {
 								slog.Error("Failed to update config", err)
 								continue
 							}
-							s.UpdateConfig(cfg)
 							slog.Info("Config updated")
 						}
 					}
