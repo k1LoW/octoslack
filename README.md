@@ -94,10 +94,11 @@ Usage:
   octoslack server [flags]
 
 Flags:
-  -c, --config string   config path (default "octoslack.yml") # env: OCTOSLACK_CONFIG
+  -c, --config string   config path (default "octoslack.yml")     # env: OCTOSLACK_CONFIG
   -h, --help            help for server
-  -p, --port uint       listen port (default 8080)            # env: OCTOSLACK_PORT
-      --verbose         show verbose log                      # env: OCTOSLACK_VERBOSE
+  -p, --port uint       listen port (default 8080)                # env: OCTOSLACK_PORT
+  -d, --update-config-interval string   interval to update config # env: OCTOSLACK_UPDATE_CONFIG_INTERVAL
+      --verbose         show verbose log                          # env: OCTOSLACK_VERBOSE
 $
 ```
 

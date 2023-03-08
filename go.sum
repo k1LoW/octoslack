@@ -48,6 +48,8 @@ github.com/josharian/mapfs v0.0.0-20210615234106-095c008854e6 h1:c+ctPFdISggaSNC
 github.com/josharian/mapfs v0.0.0-20210615234106-095c008854e6/go.mod h1:Rv/momJI8DgrWnBZip+SgagpcgORIZQE5SERlxNb8LY=
 github.com/josharian/txtarfs v0.0.0-20210615234325-77aca6df5bca h1:a8xeK4GsWLE4LYo5VI4u1Cn7ZvT1NtXouXR3DdKLB8Q=
 github.com/josharian/txtarfs v0.0.0-20210615234325-77aca6df5bca/go.mod h1:UbC32ft9G/jG+sZI8wLbIBNIrYr7vp/yqMDa9SxVBNA=
+github.com/k1LoW/duration v1.2.0 h1:qq1gWtPh7YROFyerBufVP+ATR11mOOHDInrcC/Xe/6A=
+github.com/k1LoW/duration v1.2.0/go.mod h1:qUa0NptIiUl5EUsCc8wIiSaHuNjS4wmpYNMHp0l6pos=
 github.com/k1LoW/expand v0.7.0 h1:y5UgUIkxMc1iBNBI6frTzyvJ4m0+JlaGEUzc+y8Rv0w=
 github.com/k1LoW/expand v0.7.0/go.mod h1:kqTk45JZUz7lAQIt4TMgFrgdG94N3McweNUj5+QpQN0=
 github.com/k1LoW/go-github-client/v50 v50.1.7 h1:FQi7exjtL4XEasXFG0OxSCoaxFraj0070YSEaRWrJb0=
