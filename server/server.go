@@ -6,6 +6,7 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"sync"
 	"time"
 
 	"github.com/k1LoW/octoslack/config"
@@ -19,6 +20,7 @@ var _ http.Handler = (*Server)(nil)
 type Server struct {
 	tr *transformer.Transformer
 	hc *http.Client
+	mu sync.RWMutex
 }
 
 func NewUnstartedServer(cfg *config.Config) *Server {
@@ -67,6 +69,8 @@ func Start(ctx context.Context, cfg *config.Config, port uint64) error {
 
 func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	slog.Info("Request received", slog.String("method", r.Method), slog.String("url", r.URL.String()))
+	s.mu.Lock()
+	defer s.mu.Unlock()
 	req, err := s.tr.Transform(r)
 	if err != nil {
 		if errors.Is(transformer.ErrNoneOfConditionsMet, err) {
@@ -97,4 +101,11 @@ func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	_, _ = w.Write(buf.Bytes())
+}
+
+func (s *Server) UpdateConfig(cfg *config.Config) error {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	s.tr = transformer.New(cfg)
+	return nil
 }

@@ -27,7 +27,9 @@ import (
 	"os/signal"
 	"strconv"
 	"syscall"
+	"time"
 
+	"github.com/k1LoW/duration"
 	"github.com/k1LoW/octoslack/config"
 	"github.com/k1LoW/octoslack/server"
 	"github.com/spf13/cobra"
@@ -39,9 +41,10 @@ const defaultConfigPath = "octoslack.yml"
 const defaultPort = 8080
 
 var (
-	configPath string
-	port       uint64
-	verbose    bool
+	configPath           string
+	port                 uint64
+	verbose              bool
+	updateConfigInterval string
 )
 
 var serverCmd = &cobra.Command{
@@ -58,6 +61,9 @@ var serverCmd = &cobra.Command{
 				return err
 			}
 		}
+		if e := os.Getenv("OCTOSLACK_UPDATE_CONFIG_INTERVAL"); e != "" && updateConfigInterval == "" {
+			updateConfigInterval = e
+		}
 		if os.Getenv("OCTOSLACK_VERBOSE") != "" || os.Getenv("DEBUG") != "" {
 			verbose = true
 		}
@@ -73,7 +79,31 @@ var serverCmd = &cobra.Command{
 		ctx, _ := signal.NotifyContext(context.Background(), syscall.SIGTERM, os.Interrupt, os.Kill)
 		eg, cctx := errgroup.WithContext(ctx)
 		eg.Go(func() error {
-			return server.Start(cctx, cfg, port)
+			s := server.NewUnstartedServer(cfg)
+			if updateConfigInterval != "" {
+				d, err := duration.Parse(updateConfigInterval)
+				if err != nil {
+					return err
+				}
+				ticker := time.NewTicker(d)
+				go func() {
+					for {
+						select {
+						case <-cctx.Done():
+							return
+						case <-ticker.C:
+							cfg, err := config.Load(configPath)
+							if err != nil {
+								slog.Error("Failed to update config", err)
+								continue
+							}
+							s.UpdateConfig(cfg)
+							slog.Info("Config updated")
+						}
+					}
+				}()
+			}
+			return s.Start(cctx, port)
 		})
 		if err := eg.Wait(); err != nil {
 			return err
@@ -87,6 +117,7 @@ func init() {
 	serverCmd.Flags().StringVarP(&configPath, "config", "c", defaultConfigPath, "config path")
 	serverCmd.Flags().BoolVarP(&verbose, "verbose", "", false, "show verbose log")
 	serverCmd.Flags().Uint64VarP(&port, "port", "p", defaultPort, "listen port")
+	serverCmd.Flags().StringVarP(&updateConfigInterval, "update-config-interval", "d", "", "interval to update config")
 }
 
 func setLogger(verbose bool) {
