@@ -84,6 +84,23 @@ flowchart TB
     spayload[JSON payload for Slack] -- POST https://hooks.slack.com/services/XXX/YYY --> Slack[Slack Incoming Webhook endpoint]
 ```
 
+## Option
+
+``` console
+$ octoslack server -h
+start server.
+
+Usage:
+  octoslack server [flags]
+
+Flags:
+  -c, --config string   config path (default "octoslack.yml") # env: OCTOSLACK_CONFIG
+  -h, --help            help for server
+  -p, --port uint       listen port (default 8080)            # env: OCTOSLACK_PORT
+      --verbose         show verbose log                      # env: OCTOSLACK_VERBOSE
+$
+```
+
 ## Expression evaluation engine
 
 octoslack has embedded [antonmedv/expr](https://github.com/antonmedv/expr) as the evaluation engine for the expression.
