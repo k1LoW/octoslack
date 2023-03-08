@@ -47,7 +47,7 @@ requests:
 Start the octoslack server and make the server accessible from the Internet.
 
 ``` console
-$ octoslack server -c config.yml
+$ octoslack server -c config.yml -p 8080
 ```
 
 If you want to use a Docker image and start the server using the config file in the GitHub repository, you can run the following.
