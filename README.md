@@ -21,7 +21,7 @@ flowchart TB
 
 ### 1. Setup config.yml
 
-Describe the settings for converting HTTP requests from the target webhook.
+Describe the settings for transforming/forwarding/dropping HTTP requests from the target webhook.
 
 In particular, octoslack targets [GitHub repository webhooks](https://docs.github.com/en/rest/webhooks?apiVersion=2022-11-28), so it parses the `X-GitHub-Event` header ( to `github_event` ).
 
@@ -30,6 +30,7 @@ In particular, octoslack targets [GitHub repository webhooks](https://docs.githu
 requests:
   -
     condition: github_event == 'discussion' && payload.action == 'created'
+    action: transform
     transform:
       blocks:
         - type: section
@@ -40,6 +41,9 @@ requests:
           text:
             type: mrkdwn
             text: '{{ quote_md(payload.discussion.body) }}'
+  -
+    condition: github_event == 'ping'
+    action: forward
 ```
 
 ### 2. Start octoslack server
@@ -73,7 +77,11 @@ And set it as the destination URL.
 
 ### 4. Webhook event fired
 
-HTTP requests are transformed into requests that Slack can read through octoslack.
+HTTP requests are
+
+- transformed into requests that Slack can read through octoslack.
+- forwarded directly to Slack.
+- dropped.
 
 ``` mermaid
 flowchart TB
@@ -84,23 +92,21 @@ flowchart TB
     spayload[JSON payload for Slack] -- POST https://hooks.slack.com/services/XXX/YYY --> Slack[Slack Incoming Webhook endpoint]
 ```
 
-## Option
+Drop all requests that do not match the conditions.
 
-``` console
-$ octoslack server -h
-start server.
+## Actions selectable for the request ( `action:` )
 
-Usage:
-  octoslack server [flags]
+### `transform`
 
-Flags:
-  -c, --config string   config path (default "octoslack.yml")     # env: OCTOSLACK_CONFIG
-  -h, --help            help for server
-  -p, --port uint       listen port (default 8080)                # env: OCTOSLACK_PORT
-  -d, --update-config-interval string   interval to update config # env: OCTOSLACK_UPDATE_CONFIG_INTERVAL
-      --verbose         show verbose log                          # env: OCTOSLACK_VERBOSE
-$
-```
+Transform into requests that Slack can read through octoslack.
+
+### `forward`
+
+Forward request directly to Slack.
+
+### `drop`
+
+Drop request.
 
 ## Expression evaluation engine
 
@@ -126,3 +132,21 @@ See [Language Definition](https://expr.medv.io/docs/Language-Definition).
 | `headers` | `object` | HTTP headers of request |
 | `payload` | `object` | HTTP payload of request |
 | `github_event` | `string` | Value of `X-GitHub-Event` header |
+
+## Option
+
+``` console
+$ octoslack server -h
+start server.
+
+Usage:
+  octoslack server [flags]
+
+Flags:
+  -c, --config string   config path (default "octoslack.yml")     # env: OCTOSLACK_CONFIG
+  -h, --help            help for server
+  -p, --port uint       listen port (default 8080)                # env: OCTOSLACK_PORT
+  -d, --update-config-interval string   interval to update config # env: OCTOSLACK_UPDATE_CONFIG_INTERVAL
+      --verbose         show verbose log                          # env: OCTOSLACK_VERBOSE
+$
+```
