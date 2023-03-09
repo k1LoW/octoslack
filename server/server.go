@@ -73,7 +73,7 @@ func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	defer s.mu.Unlock()
 	req, err := s.tr.Transform(r)
 	if err != nil {
-		if errors.Is(transformer.ErrNoneOfConditionsMet, err) {
+		if errors.Is(transformer.ErrNoneOfConditionsMet, err) || errors.Is(transformer.ErrDropAction, err) {
 			w.WriteHeader(http.StatusNotFound)
 			slog.Error("Request dropped", err)
 			_, _ = w.Write([]byte(fmt.Sprintf("Request dropped, because %s", err)))

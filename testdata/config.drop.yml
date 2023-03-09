@@ -1,0 +1,21 @@
+---
+requests:
+  -
+    condition: github_event == 'discussion'
+    action: drop
+  -
+    condition: github_event == 'discussion' && payload.action == 'created'
+    transform:
+      blocks:
+        - type: section
+          text:
+            type: mrkdwn
+            text: 'Discussion created by {{ payload.sender.login }}'
+        - type: section
+          text:
+            type: mrkdwn
+            text: '{{ payload.discussion.title }}'
+        - type: section
+          text:
+            type: mrkdwn
+            text: "{{ quote_md(shorten_lines(payload.discussion.body, 3, '(snip)')) }}"

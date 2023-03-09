@@ -16,6 +16,7 @@ import (
 
 var (
 	ErrNoneOfConditionsMet = errors.New("none of conditions met")
+	ErrDropAction          = errors.New("met condition to drop")
 	crRep                  = strings.NewReplacer("\r", "")
 )
 
@@ -61,15 +62,33 @@ func (t *Transformer) Transform(req *http.Request) (*http.Request, error) {
 		"shorten_lines_md": shortenLinesMarkdown,
 		"string":           cast.ToString,
 	}
-	for _, e := range t.config.Requests {
-		tf, err := evalCond(e.Condition, env)
+	for _, r := range t.config.Requests {
+		tf, err := evalCond(r.Condition, env)
 		if err != nil {
 			return nil, err
 		}
 		if !tf {
 			continue
 		}
-		v, err := evalExpand(e.Transform, env)
+		switch r.Action {
+		case config.ForwardAction:
+			u := req.URL
+			u.Host = slackHost
+			u.Scheme = "https"
+			nreq, err := http.NewRequest(req.Method, u.String(), bytes.NewReader(buf.Bytes()))
+			if err != nil {
+				return nil, err
+			}
+			if req.Header.Get("Host") != "" {
+				req.Header.Set("Host", slackHost)
+			}
+			nreq.Header = req.Header
+			return nreq, nil
+		case config.DropAction:
+			return nil, ErrDropAction
+		}
+		// config.TransformAction
+		v, err := evalExpand(r.Transform, env)
 		if err != nil {
 			return nil, err
 		}
@@ -84,7 +103,7 @@ func (t *Transformer) Transform(req *http.Request) (*http.Request, error) {
 		if err != nil {
 			return nil, err
 		}
-		req.Header.Add("Content-Type", "application/json")
+		req.Header.Set("Content-Type", "application/json")
 		return req, nil
 	}
 	return nil, ErrNoneOfConditionsMet

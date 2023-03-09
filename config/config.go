@@ -12,12 +12,21 @@ import (
 	"github.com/k1LoW/go-github-client/v50/factory"
 )
 
+type ActionType string
+
+const (
+	ForwardAction   ActionType = "forward"
+	DropAction      ActionType = "drop"
+	TransformAction ActionType = "transform"
+)
+
 type Config struct {
 	Requests []*Request `yaml:"requests"`
 }
 
 type Request struct {
 	Condition string                 `yaml:"condition"`
+	Action    ActionType             `yaml:"action"`
 	Transform map[string]interface{} `yaml:"transform"`
 }
 
@@ -73,8 +82,20 @@ func (cfg *Config) validate() error {
 		if r.Condition == "" {
 			return fmt.Errorf("invalid requests[%d]: empty condition:", i)
 		}
-		if len(r.Transform) == 0 {
-			return fmt.Errorf("invalid requests[%d]: empty transform:", i)
+		if r.Action == "" {
+			r.Action = TransformAction
+		}
+		switch r.Action {
+		case ForwardAction:
+
+		case DropAction:
+
+		case TransformAction:
+			if len(r.Transform) == 0 {
+				return fmt.Errorf("invalid requests[%d]: empty transform:", i)
+			}
+		default:
+			return fmt.Errorf("invalid requests[%d]: invalid action: %s", i, r.Action)
 		}
 	}
 	return nil
