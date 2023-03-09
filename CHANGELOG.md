@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.8.0](https://github.com/k1LoW/octoslack/compare/v0.7.0...v0.8.0) - 2023-03-09
+- Add `action:` section for forward/drop requests by @k1LoW in https://github.com/k1LoW/octoslack/pull/39
+
 ## [v0.7.0](https://github.com/k1LoW/octoslack/compare/v0.6.2...v0.7.0) - 2023-03-08
 - Support dynamic config update by @k1LoW in https://github.com/k1LoW/octoslack/pull/38
 
