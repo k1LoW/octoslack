@@ -2,6 +2,7 @@ package transformer
 
 import (
 	"bytes"
+	"fmt"
 	"net/http"
 	"net/http/httputil"
 	"os"
@@ -20,7 +21,12 @@ func TestTransform(t *testing.T) {
 		payload string
 		wantErr bool
 	}{
-		{"../testdata/config.false.yml", "", "", "../testdata/empty.json", true},
+		{
+			"../testdata/config.false.yml",
+			"",
+			"",
+			"../testdata/empty.json",
+			true},
 		{
 			"../testdata/config.yml",
 			"https://octoslack.example.com/services/XXXXXxxxxxXXXXXX/XXXxxxxXXXXXXxxxxXXXXXX",
@@ -33,6 +39,20 @@ func TestTransform(t *testing.T) {
 			"https://octoslack.example.com/services/XXXXXxxxxxXXXXXX/XXXxxxxXXXXXXxxxxXXXXXX",
 			"discussion",
 			"../testdata/empty.json",
+			true,
+		},
+		{
+			"../testdata/config.forward.yml",
+			"https://octoslack.example.com/services/XXXXXxxxxxXXXXXX/XXXxxxxXXXXXXxxxxXXXXXX",
+			"discussion",
+			"../testdata/discussion_create.json",
+			false,
+		},
+		{
+			"../testdata/config.drop.yml",
+			"https://octoslack.example.com/services/XXXXXxxxxxXXXXXX/XXXxxxxXXXXXXxxxxXXXXXX",
+			"discussion",
+			"../testdata/discussion_create.json",
 			true,
 		},
 	}
@@ -69,13 +89,13 @@ func TestTransform(t *testing.T) {
 			if err != nil {
 				t.Error(err)
 			}
-			d, f := filepath.Split(tt.payload)
+			d := filepath.Dir(tt.payload)
+			fn := fmt.Sprintf("%s.%s", filepath.Base(tt.config), filepath.Base(tt.payload))
 			if os.Getenv("UPDATE_GOLDEN") != "" {
-				golden.Update(t, d, f, got)
+				golden.Update(t, d, fn, got)
 				return
 			}
-
-			if diff := golden.Diff(t, d, f, got); diff != "" {
+			if diff := golden.Diff(t, d, fn, got); diff != "" {
 				t.Error(diff)
 			}
 		})
