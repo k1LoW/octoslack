@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.8.1](https://github.com/k1LoW/octoslack/compare/v0.8.0...v0.8.1) - 2023-03-10
+- Add request `path` for `condition:` by @k1LoW in https://github.com/k1LoW/octoslack/pull/41
+
 ## [v0.8.0](https://github.com/k1LoW/octoslack/compare/v0.7.0...v0.8.0) - 2023-03-09
 - Add `action:` section for forward/drop requests by @k1LoW in https://github.com/k1LoW/octoslack/pull/39
 
