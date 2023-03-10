@@ -128,9 +128,10 @@ See [Language Definition](https://expr.medv.io/docs/Language-Definition).
 
 | Variable name | Type | Description |
 | --- | --- | --- |
-| `method` | `string` | HTTP method of request |
-| `headers` | `object` | HTTP headers of request |
-| `payload` | `object` | HTTP payload of request |
+| `method` | `string` | Method of HTTP request |
+| `headers` | `object` | Headers of HTTP request |
+| `path` | `string` | Path of HTTP request |
+| `payload` | `object` | Payload of HTTP request |
 | `github_event` | `string` | Value of `X-GitHub-Event` header |
 
 ## Option
