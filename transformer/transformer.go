@@ -54,6 +54,7 @@ func (t *Transformer) Transform(req *http.Request) (*http.Request, error) {
 		"github_event": req.Header.Get("X-GitHub-Event"),
 		"method":       req.Method,
 		"headers":      req.Header,
+		"path":         req.URL.Path,
 		"payload":      payload,
 		// built-in funcs
 		"quote":            quote,
