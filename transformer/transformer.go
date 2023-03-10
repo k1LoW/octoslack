@@ -32,22 +32,22 @@ func New(cfg *config.Config) *Transformer {
 
 func (t *Transformer) Transform(req *http.Request) (*http.Request, error) {
 	const slackHost = "hooks.slack.com"
-	var buf bytes.Buffer
+	var body bytes.Buffer
 	if t.config == nil || len(t.config.Requests) == 0 {
 		return nil, ErrNoneOfConditionsMet
 	}
-	if _, err := buf.ReadFrom(req.Body); err != nil {
+	if _, err := body.ReadFrom(req.Body); err != nil {
 		return nil, err
 	}
 	if err := req.Body.Close(); err != nil {
 		return nil, err
 	}
-	if len(buf.Bytes()) == 0 {
+	if len(body.Bytes()) == 0 {
 		return nil, errors.New("empty payload")
 	}
 
 	payload := map[string]interface{}{}
-	if err := json.Unmarshal(buf.Bytes(), &payload); err != nil {
+	if err := json.Unmarshal(body.Bytes(), &payload); err != nil {
 		return nil, err
 	}
 	env := map[string]interface{}{
@@ -76,7 +76,7 @@ func (t *Transformer) Transform(req *http.Request) (*http.Request, error) {
 			u := req.URL
 			u.Host = slackHost
 			u.Scheme = "https"
-			nreq, err := http.NewRequest(req.Method, u.String(), bytes.NewReader(buf.Bytes()))
+			nreq, err := http.NewRequest(req.Method, u.String(), bytes.NewReader(body.Bytes()))
 			if err != nil {
 				return nil, err
 			}
