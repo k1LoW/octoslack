@@ -10,6 +10,9 @@ func quote(v interface{}) string {
 	quoted := []string{}
 	for _, l := range lines {
 		ql := fmt.Sprintf("> %s", l)
+		if strings.HasPrefix(l, "> ") {
+			ql = fmt.Sprintf(">%s", l)
+		}
 		if ql == "> " {
 			ql = ">"
 		}
@@ -40,6 +43,9 @@ func quoteMarkdown(v interface{}) string {
 			continue
 		}
 		ql := fmt.Sprintf("> %s", l)
+		if strings.HasPrefix(l, "> ") {
+			ql = fmt.Sprintf(">%s", l)
+		}
 		if ql == "> " {
 			ql = ">"
 		}
