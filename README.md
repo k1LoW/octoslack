@@ -40,7 +40,7 @@ requests:
         - type: section
           text:
             type: mrkdwn
-            text: '{{ quote_md(payload.discussion.body) }}'
+            text: '{{ quote(payload.discussion.body) }}'
   -
     condition: github_event == 'ping'
     action: forward
@@ -119,7 +119,6 @@ See [Language Definition](https://expr.medv.io/docs/Language-Definition).
 ### Built-in functions
 
 - `quote` ... Quote ( Add `> ` ) multiple lines.
-- `quote_md` ... Quote multiple lines considering Slack markdown syntax.
 - `shorten_lines` ... Shorten the number of lines.
 - `shorten_lines_md` ... Shorten the number of lines considering Slack markdown syntax.
 - `string` ... [cast.ToString](https://pkg.go.dev/github.com/spf13/cast#ToString)

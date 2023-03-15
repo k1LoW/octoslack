@@ -1,61 +1,21 @@
 package transformer
 
 import (
-	"fmt"
 	"strings"
 )
 
 func quote(v interface{}) string {
 	lines := strings.Split(v.(string), "\n")
-	quoted := []string{}
+	quoted := []string{">>> "}
 	for _, l := range lines {
-		ql := fmt.Sprintf("> %s", l)
-		if strings.HasPrefix(l, "> ") {
-			ql = fmt.Sprintf(">%s", l)
-		}
-		if ql == "> " {
-			ql = ">"
-		}
-		quoted = append(quoted, ql)
-	}
-	if len(quoted) == 1 {
-		// When converting back to YAML, `>` means something else if it's one line.
-		return strings.Join(quoted, "\n") + "\n"
+		quoted = append(quoted, l)
 	}
 	return strings.Join(quoted, "\n")
 }
 
 func quoteMarkdown(v interface{}) string {
-	lines := strings.Split(v.(string), "\n")
-	quoted := []string{}
-	inBlock := false
-	for _, l := range lines {
-		if strings.HasPrefix(l, "```") {
-			inBlock = !inBlock
-			if !inBlock {
-				// codeblock end
-				quoted = append(quoted, l)
-				continue
-			}
-		}
-		if inBlock && !strings.HasPrefix(l, "```") {
-			quoted = append(quoted, l)
-			continue
-		}
-		ql := fmt.Sprintf("> %s", l)
-		if strings.HasPrefix(l, "> ") {
-			ql = fmt.Sprintf(">%s", l)
-		}
-		if ql == "> " {
-			ql = ">"
-		}
-		quoted = append(quoted, ql)
-	}
-	if len(quoted) == 1 {
-		// When converting back to YAML, `>` means something else if it's one line.
-		return strings.Join(quoted, "\n") + "\n"
-	}
-	return strings.Join(quoted, "\n")
+	// deprecated
+	return quote(v)
 }
 
 func shortenLines(v interface{}, c int, shortenMessage string) string {
