@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.9.0](https://github.com/k1LoW/octoslack/compare/v0.8.1...v0.9.0) - 2023-03-15
+- Change log level for logging when a request is intentionally dropped by @k1LoW in https://github.com/k1LoW/octoslack/pull/44
+- Fix `quote()` ( and `quote_md()` is deprecated ) by @k1LoW in https://github.com/k1LoW/octoslack/pull/45
+
 ## [v0.8.1](https://github.com/k1LoW/octoslack/compare/v0.8.0...v0.8.1) - 2023-03-10
 - Add request `path` for `condition:` by @k1LoW in https://github.com/k1LoW/octoslack/pull/41
 
