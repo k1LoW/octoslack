@@ -12,7 +12,7 @@ requests:
         - type: section
           text:
             type: mrkdwn
-            text: "{{ quote_md(shorten_lines_md('*<' + payload.discussion.html_url + '|#' + string(payload.discussion.number) + ' ' + payload.discussion.title + '>*' + '\n' + payload.discussion.body, 10, '<' + payload.discussion.html_url + '|View more>')) }}"
+            text: "{{ quote(shorten_lines_md('*<' + payload.discussion.html_url + '|#' + string(payload.discussion.number) + ' ' + payload.discussion.title + '>*' + '\n' + payload.discussion.body, 10, '<' + payload.discussion.html_url + '|View more>')) }}"
         - type: context
           elements:
             -
@@ -30,7 +30,7 @@ requests:
         - type: section
           text:
             type: mrkdwn
-            text: "{{ quote_md(shorten_lines_md(payload.comment.body, 10, '<' + payload.comment.html_url + '|View more>')) }}"
+            text: "{{ quote(shorten_lines_md(payload.comment.body, 10, '<' + payload.comment.html_url + '|View more>')) }}"
         - type: context
           elements:
             -

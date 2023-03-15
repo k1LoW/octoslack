@@ -13,56 +13,28 @@ func TestQuote(t *testing.T) {
 	}{
 		{
 			[]string{"a", "b", "c"},
-			[]string{"> a", "> b", "> c"},
+			[]string{">>> ", "a", "b", "c"},
 		},
 		{
 			[]string{"a", "", "c"},
-			[]string{"> a", ">", "> c"},
+			[]string{">>> ", "a", "", "c"},
 		},
 		{
 			[]string{"following code", "``` sh", "go run main.go", "```", "ok"},
-			[]string{"> following code", "> ``` sh", "> go run main.go", "> ```", "> ok"},
+			[]string{">>> ", "following code", "``` sh", "go run main.go", "```", "ok"},
 		},
 		{
 			[]string{"a"},
-			[]string{"> a", ""},
+			[]string{">>> ", "a"},
+		},
+		{
+			[]string{"> a", "> b", "c"},
+			[]string{">>> ", "> a", "> b", "c"},
 		},
 	}
 	for i, tt := range tests {
 		t.Run(fmt.Sprintf("%d", i), func(t *testing.T) {
 			got := quote(strings.Join(tt.in, "\n"))
-			if got != strings.Join(tt.want, "\n") {
-				t.Errorf("got %#v\nwant %#v", got, strings.Join(tt.want, "\n"))
-			}
-		})
-	}
-}
-
-func TestQuoteMarkdown(t *testing.T) {
-	tests := []struct {
-		in   []string
-		want []string
-	}{
-		{
-			[]string{"a", "b", "c"},
-			[]string{"> a", "> b", "> c"},
-		},
-		{
-			[]string{"a", "", "c"},
-			[]string{"> a", ">", "> c"},
-		},
-		{
-			[]string{"following code", "``` sh", "go run main.go", "```", "ok"},
-			[]string{"> following code", "> ``` sh", "go run main.go", "```", "> ok"},
-		},
-		{
-			[]string{"a"},
-			[]string{"> a", ""},
-		},
-	}
-	for i, tt := range tests {
-		t.Run(fmt.Sprintf("%d", i), func(t *testing.T) {
-			got := quoteMarkdown(strings.Join(tt.in, "\n"))
 			if got != strings.Join(tt.want, "\n") {
 				t.Errorf("got %#v\nwant %#v", got, strings.Join(tt.want, "\n"))
 			}
