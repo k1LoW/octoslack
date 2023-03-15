@@ -75,7 +75,7 @@ func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		if errors.Is(transformer.ErrNoneOfConditionsMet, err) || errors.Is(transformer.ErrDropAction, err) {
 			w.WriteHeader(http.StatusNotFound)
-			slog.Error("Request dropped", err)
+			slog.Info("Request dropped", slog.String("reason", fmt.Sprintf("%s", err)), slog.String("method", r.Method), slog.String("url", r.URL.String()))
 			_, _ = w.Write([]byte(fmt.Sprintf("Request dropped, because %s", err)))
 			return
 		}
