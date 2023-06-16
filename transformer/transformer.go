@@ -12,6 +12,7 @@ import (
 	"github.com/k1LoW/expand"
 	"github.com/k1LoW/octoslack/config"
 	"github.com/spf13/cast"
+	"golang.org/x/exp/slog"
 )
 
 var (
@@ -66,7 +67,8 @@ func (t *Transformer) Transform(req *http.Request) (*http.Request, error) {
 	for _, r := range t.config.Requests {
 		tf, err := evalCond(r.Condition, env)
 		if err != nil {
-			return nil, err
+			slog.Error("Failed to eval condition", err)
+			continue
 		}
 		if !tf {
 			continue
