@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.10.1](https://github.com/k1LoW/octoslack/compare/v0.10.0...v0.10.1) - 2023-10-12
+- Bump golang.org/x/net from 0.7.0 to 0.17.0 by @dependabot in https://github.com/k1LoW/octoslack/pull/48
+
 ## [v0.10.0](https://github.com/k1LoW/octoslack/compare/v0.9.0...v0.10.0) - 2023-06-16
 - Skip when failed to eval condition by @k1LoW in https://github.com/k1LoW/octoslack/pull/46
 
