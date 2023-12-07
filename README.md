@@ -110,7 +110,7 @@ Drop request.
 
 ## Expression evaluation engine
 
-octoslack has embedded [antonmedv/expr](https://github.com/antonmedv/expr) as the evaluation engine for the expression.
+octoslack has embedded [expr-lang/expr](https://github.com/expr-lang/expr) as the evaluation engine for the expression.
 
 It can be used in `requests.[*].condition:` and `requests.[*].transform:`.
 

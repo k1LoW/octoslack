@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/antonmedv/expr"
+	"github.com/expr-lang/expr"
 	"github.com/goccy/go-json"
 	"github.com/goccy/go-yaml"
 	"github.com/k1LoW/expand"
