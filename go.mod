@@ -3,7 +3,7 @@ module github.com/k1LoW/octoslack
 go 1.20
 
 require (
-	github.com/antonmedv/expr v1.12.1
+	github.com/expr-lang/expr v1.15.6
 	github.com/goccy/go-json v0.10.0
 	github.com/goccy/go-yaml v1.10.0
 	github.com/google/go-github/v50 v50.1.0
@@ -20,6 +20,7 @@ require (
 )
 
 require (
+	github.com/antonmedv/expr v1.12.1 // indirect
 	github.com/bradleyfalzon/ghinstallation/v2 v2.2.0 // indirect
 	github.com/buildkite/interpolate v0.0.0-20200526001904-07f35b4ae251 // indirect
 	github.com/cli/go-gh v1.2.1 // indirect
