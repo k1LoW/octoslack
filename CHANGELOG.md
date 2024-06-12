@@ -1,5 +1,10 @@
 # Changelog
 
+## [v0.11.1](https://github.com/k1LoW/octoslack/compare/v0.11.0...v0.11.1) - 2024-04-19
+- Bump golang.org/x/crypto from 0.14.0 to 0.17.0 by @dependabot in https://github.com/k1LoW/octoslack/pull/52
+- Bump google.golang.org/protobuf from 1.28.0 to 1.33.0 by @dependabot in https://github.com/k1LoW/octoslack/pull/54
+- Bump golang.org/x/net from 0.17.0 to 0.23.0 by @dependabot in https://github.com/k1LoW/octoslack/pull/55
+
 ## [v0.11.0](https://github.com/k1LoW/octoslack/compare/v0.10.1...v0.11.0) - 2023-12-07
 - Bump up expr by @k1LoW in https://github.com/k1LoW/octoslack/pull/50
 
