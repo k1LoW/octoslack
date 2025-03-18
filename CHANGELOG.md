@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.13.0](https://github.com/k1LoW/octoslack/compare/v0.12.0...v0.13.0) - 2025-03-18
+- Bump github.com/expr-lang/expr from 1.15.6 to 1.17.0 by @dependabot in https://github.com/k1LoW/octoslack/pull/60
+
 ## [v0.12.0](https://github.com/k1LoW/octoslack/compare/v0.11.1...v0.12.0) - 2025-03-13
 - Bump golang.org/x/crypto from 0.21.0 to 0.31.0 by @dependabot in https://github.com/k1LoW/octoslack/pull/57
 - Bump github.com/golang-jwt/jwt/v4 from 4.5.0 to 4.5.1 by @dependabot in https://github.com/k1LoW/octoslack/pull/58
