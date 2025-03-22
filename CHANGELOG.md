@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.13.1](https://github.com/k1LoW/octoslack/compare/v0.13.0...v0.13.1) - 2025-03-22
+- Bump github.com/golang-jwt/jwt/v4 from 4.5.1 to 4.5.2 by @dependabot in https://github.com/k1LoW/octoslack/pull/62
+
 ## [v0.13.0](https://github.com/k1LoW/octoslack/compare/v0.12.0...v0.13.0) - 2025-03-18
 - Bump github.com/expr-lang/expr from 1.15.6 to 1.17.0 by @dependabot in https://github.com/k1LoW/octoslack/pull/60
 
