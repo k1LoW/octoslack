@@ -26,7 +26,7 @@ require (
 	github.com/cli/go-gh v1.2.1 // indirect
 	github.com/cli/safeexec v1.0.0 // indirect
 	github.com/fatih/color v1.10.0 // indirect
-	github.com/golang-jwt/jwt/v4 v4.5.1 // indirect
+	github.com/golang-jwt/jwt/v4 v4.5.2 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/google/go-cmp v0.5.9 // indirect
 	github.com/google/go-querystring v1.1.0 // indirect
