@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.13.2](https://github.com/k1LoW/octoslack/compare/v0.13.1...v0.13.2) - 2025-04-18
+- Bump golang.org/x/net from 0.36.0 to 0.38.0 by @dependabot in https://github.com/k1LoW/octoslack/pull/64
+
 ## [v0.13.1](https://github.com/k1LoW/octoslack/compare/v0.13.0...v0.13.1) - 2025-03-22
 - Bump github.com/golang-jwt/jwt/v4 from 4.5.1 to 4.5.2 by @dependabot in https://github.com/k1LoW/octoslack/pull/62
 
