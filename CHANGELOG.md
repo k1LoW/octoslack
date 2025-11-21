@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.13.4](https://github.com/k1LoW/octoslack/compare/v0.13.3...v0.13.4) - 2025-11-20
+- chore: setup tagpr labels by @k1LoW in https://github.com/k1LoW/octoslack/pull/68
+- Bump golang.org/x/crypto from 0.36.0 to 0.45.0 by @dependabot[bot] in https://github.com/k1LoW/octoslack/pull/70
+
 ## [v0.13.3](https://github.com/k1LoW/octoslack/compare/v0.13.2...v0.13.3) - 2025-07-18
 - Bump golang.org/x/oauth2 from 0.4.0 to 0.27.0 by @dependabot[bot] in https://github.com/k1LoW/octoslack/pull/66
 
