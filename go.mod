@@ -3,7 +3,7 @@ module github.com/k1LoW/octoslack
 go 1.24.0
 
 require (
-	github.com/expr-lang/expr v1.17.0
+	github.com/expr-lang/expr v1.17.7
 	github.com/goccy/go-json v0.10.0
 	github.com/goccy/go-yaml v1.10.0
 	github.com/google/go-github/v50 v50.1.0
