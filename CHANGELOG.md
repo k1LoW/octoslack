@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.13.7](https://github.com/k1LoW/octoslack/compare/v0.13.6...v0.13.7) - 2026-09-28
+
+- ci: generate CREDITS with gocredits v1.0.0 from a make target by @k1LoW in https://github.com/k1LoW/octoslack/pull/75
+
 ## [v0.13.6](https://github.com/k1LoW/octoslack/compare/v0.13.5...v0.13.6) - 2026-07-10
 
 - Bump golang.org/x/crypto from 0.45.0 to 0.52.0 by @dependabot[bot] in https://github.com/k1LoW/octoslack/pull/73
